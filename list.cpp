@@ -127,71 +127,52 @@ int lastCount(node * head)
     return count;
 }
 
-//int lastCount(node * head, node *& last, int & count) //find last
-//{
-//    if(!head) return 0;
-//
-//    //on the way through the list
-//    if(head->next == NULL)
-//    {
-//        last = head;
-//    }
-//    
-//    lastCount(head->next, last, count); //it doesn't know what last is
-//    //on the way back through the list
-//    if(head->data == last->data)
-//    {
-//        count++;
-//    }
-//    return 0; 
-//}
-//
-//int lastCount(node * head)
-//{
-//    if(!head) return 0;
-//    node * last = NULL;
-//    //on the way through the list
-//    //int count = 0; 
-//    int count += lastCount(head, last, count); //if a match, add to count hopefully
-//    //on the way back from the list
-//    return count;
-//}
+int countFour(node * head) //count items 4 or greater
+{
+    if(!head) return 0; 
+    //on the way through the list
+        
+    int count =+ countFour(head->next);
+   
+    //on the way back
+    if(head->data >= 4)
+    {
+    count++;
+    }
+    return count;
+}
 
-//count the number of items in the list that same as last //I don't think this works bc we blow our load getting to the last already and everything is weird stackframes
-//int lastCount(node * head) //This wrapper grabs the last 
-//{
-//    if(!head) return 0;
-//    node * last = NULL; //on the way through the list
-//    if(head->next == NULL) //if at the last
-//    {
-//        last = head;
-//    } 
-//   // int count = 1 + lastCount(head->next); //count # of items in LLL
-//    lastCount(head, last, count); 
-//    
-//    //if(head->data != last->data)
-//    //{
-//    //    std::cout << "return " << head->data << endl; 
-//    //    count--;
-//    //}
-//    return count;
-//}
-//
-//int lastCount(node * head, node * last, int & count) //this decrements the count so only matches remain
-//{
-//    if(!head) return 0;
-//    std::cout << "count is " << count << endl; 
-//   
-//    //on the way to through the list? (or is it backwards)
-//    if(head->data != last->data) //it's segfaulting here??
-//    {
-//        std::cout << "bad match" << endl; 
-//        //count--;
-//    }
-//    
-//    lastCount(head->next, last, count);
-//   
-//    //on the way back 
-//    
-//    return count;
-//}
+//This is the wrapper, it'll remove the first node
+int tuckFirst(node *& head) // remove the first node 
+{
+    if(!head) return 0;
+    node * first = new node; //provision a new node
+    first->data = head->data; //copy data into new node
+    
+    node * next = head->next;
+    delete head; 
+    head = next;
+    tuckFirst(head, first);    
+    
+    return 1;
+}
+
+int tuckFirst(node *& head, node * first) //first is passed as zero
+{
+    while(!head) return 0;
+    //on the way to the end
+       
+    tuckFirst(head->next, first); //reach last
+   
+    if(head->next == NULL) //if we are at the last
+    {
+        head->next = first;
+        first->next = NULL; 
+    }
+   
+   //on the way back 
+    
+        return 1; 
+}
+
+

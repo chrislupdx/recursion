@@ -26,3 +26,6 @@ int firstCount(node * head);
 int firstCount(node * head, node & first, int & count);
 int lastCount( node * head);
 int lastCount(node * head, node *& last, int & count);
+int countFour(node * head);
+int tuckFirst(node *& head);
+int tuckFirst(node *& head, node * first);

@@ -19,9 +19,11 @@ int main()
    // cout << " avg is " << avg << endl;
    // cout << "evenCount is " << evenCount << endl;
    // cout << firstCount(head) << "is number of 1s" << endl;  
-    cout << lastCount(head) << "is number of matching lasts" << endl; 
+  //  cout << lastCount(head) << "is number of matching lasts" << endl; 
+  //  cout << countFour(head) << " is countfour" << endl; 
    
-   display(head); //redisplay the list after your function
+    tuckFirst(head);  
+    display(head); //redisplay the list after your function
     destroy(head); 
     return 0;
 }
