@@ -74,6 +74,124 @@ int removeTwo(node *& head)
     }    
 
     return 1;
+} 
+
+//count the # of items that are the same as the 1st int firstCount(node * head, node * first, int & count) {
+int firstCount(node * head, node * first, int & count ){
+    if(!head) return 0; //check if there are caveats //on the way through the list 
+    if(head->data == first->data)
+    {
+    count++;
+    }
+    
+    firstCount(head->next, first, count);
+    //on the way back from the list
+    return 1;
 }
 
-//count the # of items that are the same as the 1st
+int firstCount(node * head)
+{
+    if(!head) return 0;
+    node * first = head;
+    int count = 0; 
+    //on the way through the list
+    firstCount(head, first, count);
+    //on the way back from the list
+    return count;
+}
+
+int lastCount(node * head, int & lastData) //find last
+{
+    if(!head) return 0;
+    //on the way through the list
+    if(head->next == NULL)
+    {
+        lastData = head->data;
+    }
+    int finalCall = lastCount(head->next, lastData); //final call will hold the value of the number of nodes that match the last data item in the rest of the list
+    //on the way back through the list
+    if(head->data == lastData)
+    {
+        finalCall++;
+    }
+    return finalCall; //LOOK AT THIS AWESOMENESS
+}
+
+int lastCount(node * head)
+{
+    if(!head) return 0;
+    //on the way through the list
+    int lastData = 0;
+    int count =+ lastCount(head, lastData); //if a match, add to count hopefully
+    //on the way back from the list
+    return count;
+}
+
+//int lastCount(node * head, node *& last, int & count) //find last
+//{
+//    if(!head) return 0;
+//
+//    //on the way through the list
+//    if(head->next == NULL)
+//    {
+//        last = head;
+//    }
+//    
+//    lastCount(head->next, last, count); //it doesn't know what last is
+//    //on the way back through the list
+//    if(head->data == last->data)
+//    {
+//        count++;
+//    }
+//    return 0; 
+//}
+//
+//int lastCount(node * head)
+//{
+//    if(!head) return 0;
+//    node * last = NULL;
+//    //on the way through the list
+//    //int count = 0; 
+//    int count += lastCount(head, last, count); //if a match, add to count hopefully
+//    //on the way back from the list
+//    return count;
+//}
+
+//count the number of items in the list that same as last //I don't think this works bc we blow our load getting to the last already and everything is weird stackframes
+//int lastCount(node * head) //This wrapper grabs the last 
+//{
+//    if(!head) return 0;
+//    node * last = NULL; //on the way through the list
+//    if(head->next == NULL) //if at the last
+//    {
+//        last = head;
+//    } 
+//   // int count = 1 + lastCount(head->next); //count # of items in LLL
+//    lastCount(head, last, count); 
+//    
+//    //if(head->data != last->data)
+//    //{
+//    //    std::cout << "return " << head->data << endl; 
+//    //    count--;
+//    //}
+//    return count;
+//}
+//
+//int lastCount(node * head, node * last, int & count) //this decrements the count so only matches remain
+//{
+//    if(!head) return 0;
+//    std::cout << "count is " << count << endl; 
+//   
+//    //on the way to through the list? (or is it backwards)
+//    if(head->data != last->data) //it's segfaulting here??
+//    {
+//        std::cout << "bad match" << endl; 
+//        //count--;
+//    }
+//    
+//    lastCount(head->next, last, count);
+//   
+//    //on the way back 
+//    
+//    return count;
+//}

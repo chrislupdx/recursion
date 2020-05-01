@@ -22,3 +22,7 @@ int copyList(node * head, node *& copyRecipient );
 int averageEvens(node * head, int & sum, int & avg, int & evenCount);
 int smallSums(node * head, int & sum);
 int removeTwo(node *& head);
+int firstCount(node * head);
+int firstCount(node * head, node & first, int & count);
+int lastCount( node * head);
+int lastCount(node * head, node *& last, int & count);

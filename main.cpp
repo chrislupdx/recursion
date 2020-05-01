@@ -18,7 +18,10 @@ int main()
    //cout << "sum is " << sum << endl;
    // cout << " avg is " << avg << endl;
    // cout << "evenCount is " << evenCount << endl;
-    display(head); //redisplay the list after your function
+   // cout << firstCount(head) << "is number of 1s" << endl;  
+    cout << lastCount(head) << "is number of matching lasts" << endl; 
+   
+   display(head); //redisplay the list after your function
     destroy(head); 
     return 0;
 }
